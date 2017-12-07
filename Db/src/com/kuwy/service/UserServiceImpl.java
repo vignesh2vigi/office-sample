@@ -1,32 +1,43 @@
 package com.kuwy.service;
 
+import java.util.List;
+
 import com.kuwy.dao.UserDao;
 import com.kuwy.dao.UserDaoImpl;
 import com.kuwy.model.User;
 
 public class UserServiceImpl implements UserService{
  
-	
-	UserDao userdao;
-	
-	/*@Override
-	public List<User> list() {
-		// TODO Auto-generated method stub
-		return userdao.list();
-	}*/
-
 	public User insertOrUpdate(User User) {
 		UserDao userDao = new UserDaoImpl();
 		User user = userDao.insertOrUpdate(User);
 		
 		return user;
 	}
-	public User getuser(User User) {
-		User getuser =new User();
-		UserDao userDao = new UserDaoImpl();  
-		getuser=userDao.getuser(User);
-		return getuser;
+	
+	public List<User>list(){
+	      UserDao userDao=new UserDaoImpl();
+	   
+	      List<User> list=userDao.list();
+	      return list;
+	    
 	}
+	@Override
+	public User update(User user) {
+		// TODO Auto-generated method stub
+		/*UserDao userDao= new UserDaoImpl();
+		User user=userDao.update(user);*/
+		return user;
+	}
+	@Override
+	public User delete(int userId) {
+		// TODO Auto-generated method stub
+		UserDao userDao=new UserDaoImpl();
+		User user=userDao.delete(userId);
+		return user;
+		
+	}
+	
 
 	
 }

@@ -6,8 +6,8 @@ import com.kuwy.model.News;
 
 public interface NewsDao {
 	
-	void savenews(News news);
-	List<News>getnews();
+	public News savenews(News news);
+	public List<News>list();
  
 	
 }

@@ -128,11 +128,57 @@ public class UserDaoImpl implements UserDao {
 
 	}
 		@Override
-		public User update(User user) {
+		public User update(int userId) {
 			// TODO Auto-generated method stub
+			User outputObj = new User();
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
 			
-			return null;
+			@SuppressWarnings("unused")
+			ResultSet resultSet = null;
+			
+try {
+				
+				connection = ConnectionDAO.mysqlConnect();
+				String del = "UPDATE userId,username,password,phonenumber,email FROM viewers WHERE userId=?";
+				preparedStatement = connection
+						.prepareStatement(del);
+			    preparedStatement.setInt(1, userId);
+				int deleteCount =  preparedStatement.executeUpdate();
+				if(deleteCount >0)
+				{
+					outputObj.setStatus(true);
+				}else
+				{
+					outputObj.setStatus(false);
+				}
+				
+			}
+			
+			catch (Exception e) {
+				
+				e.printStackTrace();
+				
+				outputObj.setStatus(false);
+			} 
+			finally
+			{
+				try {
+					preparedStatement.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return outputObj;
 		}
+		
+			
+			
 		@Override
 		public User delete(int userId) {
 			// TODO Auto-generated method stub

@@ -9,7 +9,7 @@ public interface UserService {
 	
 	public List<User>list();
 	
-	public User update(User user);
+	public User update(int userId);
 	
 	public User delete(int userId);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -45,4 +46,12 @@ public class UserController {
 		User user = userService.delete(userId);
 		return user;
 	}
+	@PUT
+	@Path(value="/update/{id}")
+	public User update(@PathParam("id") int userId){
+		UserServiceImpl userService= new UserServiceImpl();
+		User user3 = userService.update(userId);
+		return user3;
+	}
+	
 }

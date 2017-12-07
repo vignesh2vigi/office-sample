@@ -6,6 +6,13 @@ public class News {
 	private  int newsid;
 	private String headnews;
 	private String content;
+	private boolean status;
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	public int getNewsid() {
 		return newsid;
 	}

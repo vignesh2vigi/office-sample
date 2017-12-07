@@ -3,72 +3,71 @@ package com.kuwy.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.kuwy.config.ConnectionDAO;
 import com.kuwy.model.News;
 
-public class NewsDaoImpl implements  NewsDao {
+public class NewsDaoImpl implements NewsDao {
 
 	@Override
-	public void savenews(News news) {
+	public News savenews(News news) {
 		// TODO Auto-generated method stub
+		News Obj = new News();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		
 		@SuppressWarnings("unused")
 		ResultSet resultSet = null;
+
 		try {
 			@SuppressWarnings("unused")
-			int userId = 0;
+			int newsid = 0;
 			connection = ConnectionDAO.mysqlConnect();
-			String Query = "INSERT INTO news(newsid,headnews,content)VALUES(?,?,?,NOW(),?)";
+			String Query = "INSERT INTO news(newsid,headnews,content)VALUES(?,?,?)";
 			preparedStatement = connection
 					.prepareStatement(Query);
 		    preparedStatement.setInt(1, news.getNewsid());
 		    preparedStatement.setString(2, news.getHeadnews());
-			preparedStatement.setString(3, news.getContent());
-			
-			resultSet = preparedStatement.executeQuery();
+		    preparedStatement.setString(3, news.getContent());
+			int insert =  preparedStatement.executeUpdate();
+			if(insert>0)
+			{
+				Obj.setStatus(true);
+			}else
+			{
+				Obj.setStatus(false);
+			}
 			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
+			
+			Obj.setStatus(false);
+		} 
+		finally
+		{
+			try {
+				preparedStatement.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
+		return Obj;
 	}
-
-	Connection connection = null;
-	PreparedStatement preparedStatement = null;
-	@SuppressWarnings("unused")
-	ResultSet resultSet = null;
-	@Override
-	public List<News> getnews() {
 		// TODO Auto-generated method stub
 	
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		@SuppressWarnings("unused")
-		ResultSet resultSet = null;
-		try {
-			String sql = "SELECT news.newsid,news.headnews,news.content FROM news";
-			connection = ConnectionDAO.mysqlConnect();
-			preparedStatement = connection.prepareStatement(sql);
-			
-			// System.out.println(sql);
-			// preparedStatement.executeQuery();
-			resultSet = preparedStatement.executeQuery();
-			
-			
-			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		} 
-		return null;
-	
 
-}
+	@Override
+	public List<News> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	
-
+}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kuwy.config.ConnectionDAO;
+import com.kuwy.model.News;
 import com.kuwy.model.Story;
 
 public class StoryDaoImpl implements StoryDao {
@@ -163,5 +164,56 @@ public class StoryDaoImpl implements StoryDao {
 		return outObj;
 		
 	}
+	@Override
+	public Story update(Story story) {
+		
+					Story outputObj = new Story();
+					Connection connection = null;
+					PreparedStatement preparedStatement = null;
+					
+					
+					
+		try {
+						
+						connection = ConnectionDAO.mysqlConnect();
+						String del = "UPDATE story SET storyhead=?,story=? WHERE storyid=?";
+						preparedStatement = connection
+								.prepareStatement(del);
+						preparedStatement.setString(1, story.getStoryhead());
+						preparedStatement.setString(2, story.getStory());
+						preparedStatement.setInt(3, story.getStoryid());
+						int deleteCount =  preparedStatement.executeUpdate();
+						if(deleteCount >0)
+						{
+							outputObj.setStatus(true);
+						}else
+						{
+							outputObj.setStatus(false);
+						}
+						
+					}
+					
+					catch (Exception e) {
+						
+						e.printStackTrace();
+						
+						outputObj.setStatus(false);
+					} 
+					finally
+					{
+						try {
+							preparedStatement.close();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						try {
+							connection.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					return outputObj;
+	}
+
 
 }

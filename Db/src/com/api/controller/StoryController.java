@@ -38,5 +38,13 @@ public class StoryController {
 		Story story= storyService.delete(storyid);
 		return story;
 	}
+	@POST
+	@Path(value="/update")
+	public Story update(Story story){
+		
+		StoryServiceImpl storyService= new StoryServiceImpl();
+		Story user2= storyService.update(story);
+		return user2;
+	}
 
 }

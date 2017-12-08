@@ -45,12 +45,13 @@ public class UserController {
 		User user = userService.delete(userId);
 		return user;
 	}
-	/*@PUT
-	@Path(value="/update/{id}")
-	public User update(@PathParam("id") int userId){
+	@POST
+	@Path(value="/update")
+	public User update(User user){
+		
 		UserServiceImpl userService= new UserServiceImpl();
-		User user= userService.update(user);
-		return user;
-	}*/
+		User user2= userService.update(user);
+		return user2;
+	}
 	
 }

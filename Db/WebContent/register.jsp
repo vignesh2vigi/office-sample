@@ -93,7 +93,7 @@ input::-webkit-input-placeholder {
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" action="servlet/rest/user/adduser" method="post" action="#">
+					<form class="form-horizontal"  method="post" action="adduser">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Username</label>

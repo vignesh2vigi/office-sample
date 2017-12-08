@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.kuwy.config.ConnectionDAO;
 import com.kuwy.model.News;
+import com.kuwy.model.User;
 
 public class NewsDaoImpl implements NewsDao {
 
@@ -64,6 +65,59 @@ public class NewsDaoImpl implements NewsDao {
 	}
 		// TODO Auto-generated method stub
 	
+
+	@Override
+	public News update(News news) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+					News outputObj = new News();
+					Connection connection = null;
+					PreparedStatement preparedStatement = null;
+					
+					
+					
+		try {
+						
+						connection = ConnectionDAO.mysqlConnect();
+						String del = "UPDATE news SET headnews=?,content=? WHERE newsid=?";
+						preparedStatement = connection
+								.prepareStatement(del);
+						preparedStatement.setString(1, news.getHeadnews());
+						preparedStatement.setString(2, news.getContent());
+						preparedStatement.setInt(3, news.getNewsid());
+						int deleteCount =  preparedStatement.executeUpdate();
+						if(deleteCount >0)
+						{
+							outputObj.setStatus(true);
+						}else
+						{
+							outputObj.setStatus(false);
+						}
+						
+					}
+					
+					catch (Exception e) {
+						
+						e.printStackTrace();
+						
+						outputObj.setStatus(false);
+					} 
+					finally
+					{
+						try {
+							preparedStatement.close();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						try {
+							connection.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					return outputObj;
+	}
+
 
 	@Override
 	public List<News> list() {
@@ -166,6 +220,9 @@ public class NewsDaoImpl implements NewsDao {
 		return outObj;
 		
 	}
+
+
+	
 	
 
 }

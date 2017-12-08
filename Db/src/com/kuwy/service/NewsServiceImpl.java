@@ -34,4 +34,12 @@ public class NewsServiceImpl implements NewsService {
 		return news;
 	}
 
+	@Override
+	public News update(News news) {
+		// TODO Auto-generated method stub
+		NewsDao newsDao= new NewsDaoImpl();
+		News news5=newsDao.update(news);
+		return news5;
+	}
+
 }

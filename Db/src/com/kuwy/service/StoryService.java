@@ -9,4 +9,5 @@ public interface StoryService {
 	public Story save(Story story);
 	public List<Story>list();
 	public Story delete(int storyid);
+	public Story update(Story story);
 }

@@ -39,5 +39,13 @@ public class NewsController {
 		News news= newsService.delete(newsid);
 		return news;
 	}
+    @POST
+	@Path(value="/update")
+	public News update(News news){
+		
+		NewsServiceImpl newsService= new NewsServiceImpl();
+		News user2= newsService.update(news);
+		return user2;
+	}
 	
 }

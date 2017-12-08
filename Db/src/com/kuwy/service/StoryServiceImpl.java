@@ -13,7 +13,6 @@ public class StoryServiceImpl implements StoryService {
 		// TODO Auto-generated method stub
       StoryDao storyDao = new StoryDaoImpl();
 		Story story1= storyDao.save(story);
-		
 		return story1;
 	}
 
@@ -21,8 +20,7 @@ public class StoryServiceImpl implements StoryService {
 	public List<Story> list() {
 		// TODO Auto-generated method stub
 		StoryDao storyDao=new StoryDaoImpl();
-		   
-	      List<Story> list=storyDao.list();
+		   List<Story> list=storyDao.list();
 	      return list;
 	}
 
@@ -32,6 +30,13 @@ public class StoryServiceImpl implements StoryService {
 		StoryDao storyDao=new StoryDaoImpl();
 		Story story=storyDao.delete(storyid);
 		return story;
+	}
+	@Override
+	public Story update(Story story) {
+		// TODO Auto-generated method stub
+		StoryDao storyDao= new StoryDaoImpl();
+		Story user2=storyDao.update(story);
+		return user2;
 	}
 
 }

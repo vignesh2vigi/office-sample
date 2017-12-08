@@ -6,7 +6,7 @@ import com.kuwy.model.Story;
 
 public interface StoryDao {
 
-	void upload(Story story);
-	List<Story>getstory();
-	
+	public Story save(Story story);
+	public List<Story>list();
+	public Story delete(int storyid);
 }

@@ -1,7 +1,6 @@
 package com.kuwy.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 
 public class ConnectionDAO {
@@ -9,8 +8,8 @@ public class ConnectionDAO {
 
 		public static Connection mysqlConnect(){
 			Connection connection = null;
-			java.sql.ResultSet resultSet = null;
-			PreparedStatement preparedStatement = null;
+			/*java.sql.ResultSet resultSet = null;
+			PreparedStatement preparedStatement = null;*/
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "ROOT");

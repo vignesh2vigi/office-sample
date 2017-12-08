@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -18,14 +19,11 @@ import com.kuwy.service.NewsServiceImpl;
 public class NewsController {
 	
     @GET
-    @Path(value="/getnews/}")
+    @Path(value="/getnews")
     public List<News>getnews() {
-   	/* try {
-            newsService.getnews();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-   	 return getnews();
+    	NewsServiceImpl newsService = new NewsServiceImpl();
+		List<News> list = newsService.list();
+   	 return list;
 	}
     @POST
     @Path(value="/addnews")
@@ -34,5 +32,12 @@ public class NewsController {
         	News news1 =  newsService.savenews(news);
         	return news1;
     }
+    @POST
+	@Path(value="/delete/{id}")
+	public News delete(@PathParam("id") int newsid){
+		NewsServiceImpl newsService= new NewsServiceImpl();
+		News news= newsService.delete(newsid);
+		return news;
+	}
 	
 }

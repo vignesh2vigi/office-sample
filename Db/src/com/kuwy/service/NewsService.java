@@ -8,4 +8,5 @@ public interface NewsService {
 
 	public News savenews(News news);
 	public List<News>list();
+	public News delete(int newsid);
 }

@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
 		@Override
 		
 		public List<User>list() {
-			User user=new User();
+			/*User user=new User();*/
 			
 			
 			Connection connection = null;
@@ -128,22 +128,25 @@ public class UserDaoImpl implements UserDao {
 
 	}
 		@Override
-		public User update(int userId) {
+		public User update(User user) {
 			// TODO Auto-generated method stub
 			User outputObj = new User();
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
 			
-			@SuppressWarnings("unused")
-			ResultSet resultSet = null;
+			
 			
 try {
 				
 				connection = ConnectionDAO.mysqlConnect();
-				String del = "UPDATE userId,username,password,phonenumber,email FROM viewers WHERE userId=?";
+				String del = "UPDATE viewers SET username=?,password=?,phonenumber=?,email=? WHERE userId=?";
 				preparedStatement = connection
 						.prepareStatement(del);
-			    preparedStatement.setInt(1, userId);
+				preparedStatement.setString(1, user.getUsername());
+			    preparedStatement.setString(2, user.getPassword());
+			    preparedStatement.setString(3, user.getPhonenumber());
+			    preparedStatement.setString(4, user.getEmail());
+			    preparedStatement.setInt(5, user.getUserId());
 				int deleteCount =  preparedStatement.executeUpdate();
 				if(deleteCount >0)
 				{

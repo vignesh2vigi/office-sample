@@ -23,11 +23,11 @@ public class UserServiceImpl implements UserService{
 	    
 	}
 	@Override
-	public User update(int userId) {
+	public User update(User user) {
 		// TODO Auto-generated method stub
 		UserDao userDao= new UserDaoImpl();
-		User user=userDao.update(userId);
-		return user;
+		User user2=userDao.update(user);
+		return user2;
 	}
 	@Override
 	public User delete(int userId) {

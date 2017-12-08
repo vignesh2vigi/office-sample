@@ -7,6 +7,13 @@ public class Story {
 	private int storyid;
 	private String storyhead;
 	private String story;
+	private boolean status;
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	public int getStoryid() {
 		return storyid;
 	}

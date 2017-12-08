@@ -9,19 +9,29 @@ import com.kuwy.model.Story;
 public class StoryServiceImpl implements StoryService {
 
 	@Override
-	public void upload(Story story) {
+	public Story save(Story story) {
 		// TODO Auto-generated method stub
-		StoryDao storyDao = new StoryDaoImpl();
-		storyDao.upload(story);
-
+      StoryDao storyDao = new StoryDaoImpl();
+		Story story1= storyDao.save(story);
+		
+		return story1;
 	}
 
 	@Override
-	public List<Story> getstory() {
+	public List<Story> list() {
 		// TODO Auto-generated method stub
-		StoryDao storyDao = new StoryDaoImpl();
+		StoryDao storyDao=new StoryDaoImpl();
+		   
+	      List<Story> list=storyDao.list();
+	      return list;
+	}
+
+	@Override
+	public Story delete(int storyid) {
 		// TODO Auto-generated method stub
-		return storyDao.getstory();
-				}
+		StoryDao storyDao=new StoryDaoImpl();
+		Story story=storyDao.delete(storyid);
+		return story;
+	}
 
 }

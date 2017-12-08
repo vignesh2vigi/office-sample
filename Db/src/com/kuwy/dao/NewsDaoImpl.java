@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.kuwy.config.ConnectionDAO;
 import com.kuwy.model.News;
-import com.kuwy.model.User;
 
 public class NewsDaoImpl implements NewsDao {
 

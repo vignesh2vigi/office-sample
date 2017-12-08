@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kuwy.config.ConnectionDAO;
-import com.kuwy.model.News;
 import com.kuwy.model.Story;
 
 public class StoryDaoImpl implements StoryDao {

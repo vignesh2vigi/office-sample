@@ -30,7 +30,6 @@ public class UserController {
 	@GET
 	@Path(value="/getuser")
 	public List<User>list(){
-		
 		UserServiceImpl userService= new UserServiceImpl();
 		List<User> list = userService.list();
 		return list;
@@ -48,7 +47,6 @@ public class UserController {
 	@POST
 	@Path(value="/update")
 	public User update(User user){
-		
 		UserServiceImpl userService= new UserServiceImpl();
 		User user2= userService.update(user);
 		return user2;

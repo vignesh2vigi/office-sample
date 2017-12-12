@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	
-	public User insertOrUpdate(User user) {
+	public User registerUser(User user) {
 		User outputObj = new User();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 			@SuppressWarnings("unused")
 			int userId = 0;
 			connection = ConnectionDAO.mysqlConnect();
-			String insertOrUpdateQuery = "INSERT INTO viewers(userId,username,password,phonenumber,email)VALUES(?,?,?,?,?)";
+			String insertOrUpdateQuery = "INSERT INTO viewers(userId,username,email,password,phonenumber)VALUES(?,?,?,?,?)";
 			preparedStatement = connection
 					.prepareStatement(insertOrUpdateQuery);
 		    preparedStatement.setInt(1, user.getUserId());

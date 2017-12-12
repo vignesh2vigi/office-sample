@@ -20,10 +20,10 @@ public class UserController {
 	
      
 	@POST
-    @Path(value="/adduser")
-	public User insertOrUpdate(User user) {
+    @Path(value="/registerUser")
+	public User registerUser(User user) {
         	UserServiceImpl userService = new UserServiceImpl(); 
-        	User user2 =  userService.insertOrUpdate(user);
+        	User user2 =  userService.registerUser(user);
         	return user2;
     }
 	

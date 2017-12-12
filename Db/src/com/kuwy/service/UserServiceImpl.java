@@ -8,11 +8,11 @@ import com.kuwy.model.User;
 
 public class UserServiceImpl implements UserService{
  
-	public User insertOrUpdate(User User) {
+	public User registerUser(User user) {
 		UserDao userDao = new UserDaoImpl();
-		User user = userDao.insertOrUpdate(User);
+		User user4= userDao.registerUser(user);
 		
-		return user;
+		return user4;
 	}
 	
 	public List<User>list(){

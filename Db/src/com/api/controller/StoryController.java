@@ -26,7 +26,7 @@ public class StoryController {
     }
 	@GET
     @Path(value="/getstory")
-    public List<Story>getstory() {
+    public List<Story>list() {
     	StoryServiceImpl storyService = new StoryServiceImpl();
 		List<Story> list = storyService.list();
    	 return list;

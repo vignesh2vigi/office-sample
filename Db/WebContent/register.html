@@ -1,7 +1,5 @@
 
- <!--  </div>
-</div>
-</div> -->
+ <form name="register">
   
 <!-- Text input-->
 
@@ -10,12 +8,14 @@
   <!-- <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
-  <input  ng-model="user.username" placeholder="Username" class="form-control"  type="text">
+  <input name="user.username" ng-model="user.username" placeholder="Username" class="form-control"  type="text">
   
    <!--  </div>
   </div>
 </div> -->
 <br>
+<!-- <p>The input's valid state is:</p>
+<h1>{{register.user.username.$valid}}</h1> -->
 <br>
 
 
@@ -78,3 +78,7 @@
 
 </div>
     </div>
+    </form>
+    
+    
+   <h3>Your User name:</h3><p ng-bind="user.username"></p>

@@ -51,5 +51,19 @@ public class UserController {
 		User user2= userService.update(user);
 		return user2;
 	}
-	
+	@POST
+	@Path(value="/login")
+	public User login(User user){
+		UserServiceImpl userService=new UserServiceImpl();
+		User user6=userService.login(user);
+		return user6;
+	}
+	@GET
+	@Path(value="/logout")
+	public User logout(User user){
+		UserServiceImpl userService=new UserServiceImpl();
+		
+		User user6=userService.update(user);
+		return user6;
+	}
 }

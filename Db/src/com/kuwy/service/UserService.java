@@ -12,4 +12,6 @@ public interface UserService {
 	public User update(User user);
 	
 	public User delete(int userId);
+	
+	public User login(User user);
 }

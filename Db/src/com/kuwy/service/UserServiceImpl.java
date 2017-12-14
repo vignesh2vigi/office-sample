@@ -8,6 +8,14 @@ import com.kuwy.model.User;
 
 public class UserServiceImpl implements UserService{
  
+	@Override
+	public User login(User user) {
+		// TODO Auto-generated method stub
+		UserDao userDao = new UserDaoImpl();
+		User user5= userDao.login(user);
+		return user5;
+	}
+
 	public User registerUser(User user) {
 		UserDao userDao = new UserDaoImpl();
 		User user4= userDao.registerUser(user);

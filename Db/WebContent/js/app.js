@@ -1,7 +1,7 @@
 /**
  * 
  */
-var app = angular.module("app", [ 'ngRoute'])
+var app = angular.module("app", [ 'ngRoute','ngCookies'])
 app.config(function($routeProvider) {
 
 	$routeProvider
@@ -18,6 +18,46 @@ app.config(function($routeProvider) {
         	controller:'UserController'
     })
     
+    .when("/addnews", {
+        templateUrl : 'news.html',
+        	controller:'NewsController'
+    })
+    .when("/getnews", {
+        templateUrl : 'newslist.html',
+        	controller:'NewsController'
+    })
+    .when("/login", {
+        templateUrl : 'login.html',
+        	controller:'UserController'
+    })
+   
+    })
     .otherwise("/home",{templateurl:"home.html"})
+    
+    
 	
+})
+app.run(function($rootScope,$cookieStore,$location,UserService){
+	
+	if($rootScope.currentUser==undefined){
+		$rootScope.currentUser=$cookieStore.get('currentUser')
+}
+		$rootScope.logout=function(){
+		UserService.logout().then(function(response){
+			delete $rootScope.currentUser;
+			$cookieStore.remove('currentUser')
+			$location.path('/login')
+			
+		},function(response){
+			console.log(response.status)
+			if(response.status==401){
+				delete $rootScope.currentUser;
+				$cookieStore.remove('currentUser')
+				$location.path('/login')
+
+			}
+				
+		})
+	}
+
 })

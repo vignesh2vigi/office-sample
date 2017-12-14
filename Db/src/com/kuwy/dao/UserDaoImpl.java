@@ -183,6 +183,57 @@ try {
 			
 			
 		@Override
+		public User login(User user) {
+			// TODO Auto-generated method stub
+			Connection connection = null;
+			ResultSet resultSet = null;
+			PreparedStatement preparedStatement = null;
+try {
+				
+				String sql = "SELECT username,password FROM viewers WHERE username=?,password=?";
+				connection = ConnectionDAO.mysqlConnect();
+				preparedStatement = connection.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery();
+				while (resultSet.next()){
+					User user1 = new User();
+					//outob.set
+					/*User user = new User();
+					user.setUsername(resultSet.getString("username"));
+					user.setEmail(resultSet.getString("email"));
+					user.setPassword(resultSet.getString("password"));
+					user.setPhonenumber(resultSet.getString("phonenumber"));*/
+					user1.setUsername(resultSet.getString("username"));
+					
+					user1.setPassword(resultSet.getString("password"));
+					
+				
+				}
+	
+				
+				
+				
+			} catch (Exception e) {
+	
+				e.printStackTrace();
+			    
+			} 
+			finally{
+				try {
+					preparedStatement.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			return user;
+		}
+
+		@Override
 		public User delete(int userId) {
 			// TODO Auto-generated method stub
 			User outObj = new User();

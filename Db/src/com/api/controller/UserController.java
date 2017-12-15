@@ -60,10 +60,10 @@ public class UserController {
 	}
 	@GET
 	@Path(value="/logout")
-	public User logout(User user){
-		UserServiceImpl userService=new UserServiceImpl();
-		
-		User user6=userService.update(user);
-		return user6;
+	public User logout(@PathParam("id") int userId){
+		UserServiceImpl userService= new UserServiceImpl();
+		User user = userService.delete(userId);
+	
+		return user;
 	}
 }

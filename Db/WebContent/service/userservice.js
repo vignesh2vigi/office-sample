@@ -17,7 +17,7 @@ app.factory('UserService',function($http){
 	}
 	userService.logout=function()
 	{
-	return $http.post(BASE_URL+"/servlet/rest/user/logout")
+	return $http.get(BASE_URL+"/servlet/rest/user/logout")
 	}
 	
 	

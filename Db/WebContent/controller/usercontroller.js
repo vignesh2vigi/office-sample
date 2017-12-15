@@ -45,17 +45,20 @@ app.controller('UserController',function($scope,UserService,$location,$rootScope
 	$location.path('/login')
 	})
 	}
-	if($rootScope.currentUser!=undefined){
+	if($rootScope.currentUser){
 		UserService.getuser().then(function(response){
+			$cookieStore.remove('userDetails')
 			$scope.user=response.data
 		},function(response){
 			console.log(response.status)
-			if(response.status==401){
+			/*if(response){
 				delete $rootScope.currentUser;
 				$cookieStore.remove('userDetails')
 				$location.path('/login')
 
-			}
+			}*/
+			$cookieStore.remove('userDetails')
+			$location.path('/login')
 				
 			})
 		}

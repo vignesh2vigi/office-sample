@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 			@SuppressWarnings("unused")
 			int userId = 0;
 			connection = ConnectionDAO.mysqlConnect();
-			String insertOrUpdateQuery = "INSERT INTO viewers(userId,username,email,password,phonenumber)VALUES(?,?,?,?,?)";
+			String insertOrUpdateQuery = "INSERT INTO viewers(userId,username,email,password,phonenumber,role)VALUES(?,?,?,?,?,?)";
 			preparedStatement = connection
 					.prepareStatement(insertOrUpdateQuery);
 		    preparedStatement.setInt(1, user.getUserId());
@@ -38,6 +38,7 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setString(3, user.getEmail());
 			preparedStatement.setString(4, user.getPassword());
 			preparedStatement.setString(5, user.getPhonenumber());
+			preparedStatement.setString(6, user.getRole());
 			int insertCount =  preparedStatement.executeUpdate();
 			if(insertCount >0)
 			{
@@ -82,7 +83,7 @@ public class UserDaoImpl implements UserDao {
 			List<User> list = new ArrayList<User>();
 			try {
 				
-				String sql = "SELECT userId,username,password,phonenumber,email FROM viewers";
+				String sql = "SELECT userId,username,password,phonenumber,email,role FROM viewers";
 				connection = ConnectionDAO.mysqlConnect();
 				preparedStatement = connection.prepareStatement(sql);
 				resultSet = preparedStatement.executeQuery();
@@ -99,6 +100,7 @@ public class UserDaoImpl implements UserDao {
 					outob.setPassword(resultSet.getString("password"));
 					outob.setPhonenumber(resultSet.getString("phonenumber"));
 	                outob.setUserId(resultSet.getInt("userId"));
+	                outob.setRole(resultSet.getString("role"));
 				list.add(outob);
 				}
 	

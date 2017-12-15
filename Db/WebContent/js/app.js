@@ -30,8 +30,6 @@ app.config(function($routeProvider) {
         templateUrl : 'login.html',
         	controller:'UserController'
     })
-   
-    })
     .otherwise("/home",{templateurl:"home.html"})
     
     
@@ -50,12 +48,13 @@ app.run(function($rootScope,$cookieStore,$location,UserService){
 			
 		},function(response){
 			console.log(response.status)
-			if(response.status==401){
+			/*if(response.status){
 				delete $rootScope.currentUser;
 				$cookieStore.remove('currentUser')
 				$location.path('/login')
 
-			}
+			}*/
+			$location.path('/login')
 				
 		})
 	}

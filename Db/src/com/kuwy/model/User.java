@@ -6,6 +6,13 @@ public class User {
 	
     private int userId;
     private boolean status;
+    private String role;
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public boolean isStatus() {
 		return status;
 	}
